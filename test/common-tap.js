@@ -7,6 +7,10 @@ var readCmdShim = require('read-cmd-shim')
 var isWindows = require('../lib/utils/is-windows.js')
 var Bluebird = require('bluebird')
 
+if (isWindows) {
+  process.env.PATH += ';C:\\Program Files\\Git\\mingw64\\libexec\\git-core'
+}
+
 // remove any git envs so that we don't mess with the main repo
 // when running git subprocesses in tests
 Object.keys(process.env).filter(k => /^GIT/.test(k)).forEach(
@@ -103,6 +107,7 @@ ourenv.npm_config_globalconfig = exports.npm_config_globalconfig = configCommon.
 ourenv.npm_config_global_style = 'false'
 ourenv.npm_config_legacy_bundling = 'false'
 ourenv.npm_config_fetch_retries = '0'
+ourenv.npm_config_update_notifier = 'false'
 ourenv.random_env_var = 'foo'
 // suppress warnings about using a prerelease version of node
 ourenv.npm_config_node_version = process.version.replace(/-.*$/, '')
