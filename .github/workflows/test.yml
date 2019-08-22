@@ -5,10 +5,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Setup node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - run: node . install
-      name: install devDependencies
-    - run: 'node . run tap -- test/tap/00-verify-ls-ok.js -t600 -Rclassic -c'
