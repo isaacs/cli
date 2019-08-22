@@ -3,35 +3,35 @@ on: [push, pull_request]
 
 jobs:
   test:
-    strategy:
-      # matrix:
-      #   os: [ubuntu-latest]
-      #   node: [12.x]
-      #   cmd: ['node . run tap -- test/tap/*.js -t600 -Rclassic -c']
-      #   #include:
-      #   #  - os: ubuntu-latest
-      #   #    node: 12.x
-      #   #    cmd: 'sudo node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
-      #   #  - os: ubuntu-latest
-      #   #    node: 12.x
-      #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c --cov'
-      #   #  - os: ubuntu-latest
-      #   #    node: 10.x
-      #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
-      #   #  - os: ubuntu-latest
-      #   #    node: 8.x
-      #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
-      #   #  - os: ubuntu-latest
-      #   #    node: 6.x
-      #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
-      #   #  - os: windows-latest
-      #   #    node: 12.x
-      #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
-      #   #  - os: ubuntu-latest
-      #   #    node: 12.x
-      #   #    cmd: |
-      #   #      node . run pretest
-      #   #      node . run licenses
+    # strategy:
+    #   # matrix:
+    #   #   os: [ubuntu-latest]
+    #   #   node: [12.x]
+    #   #   cmd: ['node . run tap -- test/tap/*.js -t600 -Rclassic -c']
+    #   #   #include:
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 12.x
+    #   #   #    cmd: 'sudo node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 12.x
+    #   #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c --cov'
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 10.x
+    #   #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 8.x
+    #   #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 6.x
+    #   #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+    #   #   #  - os: windows-latest
+    #   #   #    node: 12.x
+    #   #   #    cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+    #   #   #  - os: ubuntu-latest
+    #   #   #    node: 12.x
+    #   #   #    cmd: |
+    #   #   #      node . run pretest
+    #   #   #      node . run licenses
     runs-on: ubuntu-latest # ${{ matrix.os }}
     steps:
     - uses: actions/checkout@master
