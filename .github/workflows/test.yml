@@ -5,16 +5,30 @@ jobs:
   test:
     strategy:
       matrix:
-        node: [ '12', '10', '8', '6' ]
-        os: [ubuntu-latest]
-        cmd: 'node . run tap -- "test/tap.js" -t600 -Rclassic -c'
         include:
-          - os: windows-latest
+          - os: ubuntu-latest
             node: 12
-            cmd: 'node . run tap -- "test/tap.js" -t600 -Rclassic -c'
+            cmd: 'sudo node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+          - os: ubuntu-latest
+            node: 12
+            cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c --cov'
           - os: ubuntu-latest
             node: 10
-            cmd: 'npx standard && node . run licenses'
+            cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+          - os: ubuntu-latest
+            node: 8
+            cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+          - os: ubuntu-latest
+            node: 6
+            cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+          - os: windows-latest
+            node: 12
+            cmd: 'node . run tap -- "test/tap/*.js" -t600 -Rclassic -c'
+          - os: ubuntu-latest
+            node: 12
+            cmd: |
+              node . run pretest
+              node . run licenses
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@master
