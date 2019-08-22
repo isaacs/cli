@@ -1,0 +1,36 @@
+name: continuous integration tests
+on: [push, pull_request]
+
+push:
+  branches:
+    - !refs/pull/*
+
+jobs:
+  test:
+
+    strategy:
+      matrix:
+        node: [ '12', '10', '8', '6' ]
+        os: [ubuntu-latest]
+        cmd: 'node . run tap -- "test/tap.js" -t600 -Rclassic -c'
+        include:
+          - os: windows-latest
+            node: 12
+            cmd: 'node . run tap -- "test/tap.js" -t600 -Rclassic -c'
+          - os: ubuntu-latest
+            node: 10
+            cmd: 'npx standard && node . run licenses'
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node . install
+        name: install devDependencies
+      - run: ${{ matrix.cmd }}
+        with:
+          env: "DEPLOY_VERSION=testing"
+
